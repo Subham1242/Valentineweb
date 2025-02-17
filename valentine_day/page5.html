@@ -102,7 +102,38 @@
 });
 
     });
-</script>
+    </script>
+    <script>
+        // Google Apps Script URL to save the answer in Google Sheets
+        const googleAppsScriptUrl = 'YOUR_GOOGLE_APPS_SCRIPT_URL';  // Replace with the URL from your Google Apps Script
+
+        // Event listener for the submit button
+        document.getElementById('submitButton').addEventListener('click', function(event) {
+            const answer = document.getElementById('answerInput').value;
+            
+            if (answer.trim() === '') {
+                alert("Please enter an answer!");
+                return;
+            }
+
+            // Send the answer to Google Sheets using the Apps Script Web App
+            const params = new URLSearchParams();
+            params.append('answer', answer);  // Send answer as a parameter
+
+            fetch(googleAppsScriptUrl, {
+                method: 'POST',
+                body: params
+            })
+            .then(response => response.text())
+            .then(result => {
+                alert("Your answer has been saved!");
+                document.getElementById('answerInput').value = '';  // Clear the text box after submission
+            })
+            .catch(error => {
+                alert("Error saving your answer!");
+            });
+        });
+    </script>
 
 </body>
 </html>
