@@ -1,6 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js"></script>
+  <script>
+    const firebaseConfig = {
+  apiKey: "AIzaSyBww7Nk8UiIYxi8l9qEchmo8I8IOIFUyJc",
+  authDomain: "valentine-answer.firebaseapp.com",
+  databaseURL: "https://valentine-answer-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "valentine-answer",
+  storageBucket: "valentine-answer.firebasestorage.app",
+  messagingSenderId: "38780462532",
+  appId: "1:38780462532:web:eb94337da664a602587091",
+  measurementId: "G-GLZQPQ9KS0"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+  </script>
+  
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Answers Page</title>
@@ -91,6 +109,60 @@
             localStorage.setItem("valentine_answers", JSON.stringify(filteredAnswers));
             location.reload();
         }
+        <form id="answerForm">
+    <input type="text" id="answerInput" placeholder="Type your answer">
+    <button type="submit">Submit Answer</button>
+</form>
+
+<script>
+    function saveAnswer(answer) {
+        const answersRef = database.ref('answers');
+        answersRef.push({
+            answer: answer,
+            timestamp: new Date().toISOString()
+        });
+    }
+
+    // Capture form submission
+    document.getElementById('answerForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        const answer = document.getElementById('answerInput').value;
+        if (answer) {
+            saveAnswer(answer); // Save answer to Firebase
+            alert("Answer saved!");
+            document.getElementById('answerInput').value = ''; // Clear input field
+        } else {
+            alert("Please enter an answer!");
+        }
+    });
+</script>
+<h3>All Answers:</h3>
+<ul id="answersList"></ul>
+<script>
+    function getAnswers() {
+        const answersRef = database.ref('answers');
+        answersRef.on('value', (snapshot) => {
+            const data = snapshot.val();
+            const answersList = document.getElementById('answersList');
+            answersList.innerHTML = ''; // Clear previous answers
+
+            // Loop through all answers and display them
+            for (const key in data) {
+                if (data.hasOwnProperty(key)) {
+                    const answer = data[key];
+                    const listItem = document.createElement('li');
+                    listItem.textContent = `${answer.answer} - ${answer.timestamp}`;
+                    answersList.appendChild(listItem);
+                }
+            }
+        });
+    }
+
+    // Call getAnswers function to display answers
+    getAnswers();
+</script>
+
+        
     </script>
 </body>
 </html>
