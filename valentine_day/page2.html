@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine's Day - Page 2</title>
+    <style>
+        /* Page Styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            background-color: #ffe6e9;
+            color: #d63384;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            transition: opacity 1s ease-in-out;
+        }
+        .fade-in { opacity: 1; }
+        .container {
+            width: 90%;
+            max-width: 500px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        h1 { font-size: 24px; }
+        .romantic-text { font-size: 18px; line-height: 1.5; }
+        .next-button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 20px;
+            text-decoration: none;
+            color: white;
+            background: #ff4d6d;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+        .next-button:hover { background: #d63384; }
+    </style>
+</head>
+<body class="fade-in">
+    <div class="container">
+        <h1>📖 Our Love Story 📖</h1>
+        <p class="romantic-text">
+            "Har kahani ki shuruaat hoti hai ek khoobsurat mod se,  
+            aur humari kahani ki taqdeer likhi gayi thi chand sitaron ke roshni mein...  
+            
+            <br><br>
+            Jab hum 4 December ko raat me 4 bje tak baat kiye, tab tak meri life kya thi wo tumko pata ha. Me kis halat me tha tumko pata ha. Lakin tumse baat baat karke sach me ek apna pan sa laga. Hum 2 saal bad baat kar rahe the lakin tumne esa mahasoos hi nahi hone diya.
+            Wase I know ki me bola tha ki me relationship ke liye ready nahi hu lakin tumhara support (ya sayad pyaar😅) itna tha ki me mana hi nahi kar paya. Aur aaj tum meri jaan ho.
+            <br><br>
+            Jab hum pehli baar dekha (online), tabhi dil ne ek ajeeb sa ehsaas mehsoos kiya.  
+            Yeh kahani sirf shabdon ki nahi, balki dil ki gehraiyon ki bhi hai.  
+            <br><br>
+            Tum meri kahani ka sabse haseen hissa ho. ❤️"
+        </p>
+
+        <!-- Background Music -->
+        <audio id="backgroundMusic" autoplay loop>
+            <source src="media/song2.mp3" type="audio/mpeg">
+        </audio>
+
+        <!-- Next Button -->
+        <a href="page3.html" class="next-button">Next ➝</a>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            document.body.classList.add("fade-in");
+
+            // Play music automatically
+            let music = document.getElementById("backgroundMusic");
+            music.volume = 0.5; // Set volume to 50%
+            music.play().catch(error => {
+                console.log("Autoplay blocked, user interaction needed.");
+            });
+        });
+    </script>
+</body>
+</html>

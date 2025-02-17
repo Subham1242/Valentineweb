@@ -1,0 +1,59 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  text-align: center;
+  overflow: hidden;
+  animation: fadeIn 1.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.page-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.next-btn, .home-btn {
+  padding: 12px 24px;
+  background-color: #ff4081;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.next-btn:hover, .home-btn:hover {
+  transform: scale(1.1);
+}
+
+.pulsing-heart, .swipe-hug, .heartbeat-animation, .hug-animation {
+  width: 200px;
+  height: 200px;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.pulsing-heart { background-image: url('images/heart.png'); animation: pulse 1.5s infinite; }
+.swipe-hug { background-image: url('images/hug1.gif'); }
+.heartbeat-animation { background-image: url('images/hug2.gif'); }
+.hug-animation { background-image: url('images/hug3.gif'); animation: bounce 1.5s infinite alternate; }
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+@keyframes bounce {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.1); }
+}

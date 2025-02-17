@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine's Day - Page 6</title>
+    <style>
+        /* Page Styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            background-color: #fff0f5;
+            color: #d63384;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            transition: opacity 1s ease-in-out;
+        }
+        .fade-in { opacity: 1; }
+        .container {
+            width: 90%;
+            max-width: 500px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        h1 { font-size: 22px; }
+        p { font-size: 18px; font-style: italic; }
+        .next-button {
+            padding: 10px 15px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 5px;
+            background: #ff4d6d;
+            color: white;
+            font-size: 16px;
+            text-decoration: none;
+            display: inline-block;
+            transition: 0.3s;
+        }
+        .next-button:hover { background: #d63384; }
+    </style>
+</head>
+<body class="fade-in">
+    <div class="container">
+        <h1>Ye Tumhare liye..</h1>
+        <p>
+           महंगे तोहफे नहीं,<br> मुझे
+
+बस तुम्हारा साथ चाहिए,<br> बाँट सकूं दिल की हर बात तुमस<br> अपनेपन का ये एहसास चाहिए,<br> बड़े-बड़े ख्वाब नहीं मेरे,<br> मुझे
+
+छोटी-छोटी खुशियाँ चाहिए,<br>
+
+कह सकूँ तुम्हें सिर्फ अपना...<br>
+
+मुझे बस इतना हक़ चाहिए।।
+        </p>
+
+        <a href="page7.html" class="next-button">Next ➝</a>
+    </div>
+
+    <!-- Background Music -->
+    <audio id="backgroundMusic" autoplay loop>
+        <source src="media/song6.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            document.body.classList.add("fade-in");
+
+            // Background Music Autoplay
+            let music = document.getElementById("backgroundMusic");
+            music.volume = 0.5; 
+            music.play().catch(error => console.log("Autoplay blocked, user interaction needed."));
+        });
+    </script>
+</body>
+</html>

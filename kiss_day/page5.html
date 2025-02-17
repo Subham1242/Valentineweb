@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kiss Day - Pyaar Jo Hamesha Mera Rahega</title>
+    <link rel="stylesheet" href="kiss.css">
+</head>
+<body>
+    <div class="video-container">
+        <video autoplay loop muted>
+            <source src="media/vid5.mp4" type="video/mp4">
+        </video>
+    </div>
+    
+    <div class="text-box">
+        <p>"Kiss Day sirf ek din nahi,<br> 
+           Yeh ek yaad hai jo har din tumhare hothon par ek pyaari si muskurahat chhod jayegi…<br> 
+           Tum jitni bhi door ho, yeh mohabbat hamesha tumhari rahegi..."</p>
+           <p>Click 💖</p>
+    <!-- Surprise Heart Button -->
+    <div class="heart-surprise" onclick="showLoveLetter()">💖</div>
+
+        <button id="home-button" class="button" onclick="nextPage('../index.html')" disabled>Back to Home</button>
+    </div>
+
+
+    <!-- Hidden Love Letter -->
+    <div id="love-letter" class="hidden">
+        <p>"Meri pyaari Radhe,<br>
+        Har din tumhari yaad aati hai, har pal tumhare bina adhoora lagta hai…<br>
+        Par iss pyaar ka ek ehsaas hamesha mere dil mein basa rehta hai…<br>
+        Door hoke bhi tum mere paas ho, aur yeh mohabbat hamesha tumhari rahegi.<br>
+        <br>
+        <b>Tumhara Baacha </b>"</p>
+        <button class="close-button" onclick="closeLoveLetter()">Close</button>
+    </div>
+
+    <audio id="bg-music" src="media/song5.mp3" loop></audio>
+    <script src="kiss.js"></script>
+</body>
+</html>

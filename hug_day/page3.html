@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Close Your Eyes & Feel My Hug</title>
+  <link rel="stylesheet" href="hug.css">
+  <style>
+    .heartbeat-animation {
+  width: 100px;
+  height: 100px;
+}
+
+.heartbeat-gif {
+  width: 100%;
+  height: 100%;
+}
+
+  </style>
+</head>
+<body>
+  <audio id="bg-music" autoplay loop>
+    <source src="songs/song3.mp3" type="audio/mp3">
+  </audio>
+<div class="heartbeat-animation">
+  <img src="images/hug2.gif" class="heartbeat-gif" alt="Heartbeat">
+</div>
+
+  <div class="page-container">
+    <div class="heartbeat-animation"></div>
+    <p class="text-effect">"Aankhein band karo aur mehsoos karo ki main tumhare kareeb hoon."</p>
+    <button class="next-btn" onclick="goToPage('page4.html')">Next</button>
+  </div>
+
+  <script src="hug.js"></script>
+  <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    document.body.style.opacity = "0";
+    setTimeout(() => {
+      document.body.style.transition = "opacity 1s ease-in-out";
+      document.body.style.opacity = "1";
+    }, 200);
+  });
+
+  function goToPage(page) {
+    document.body.style.opacity = "0";
+    setTimeout(() => {
+      window.location.href = page;
+    }, 800);
+  }
+</script>
+</body>
+</html>

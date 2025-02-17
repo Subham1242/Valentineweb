@@ -1,0 +1,60 @@
+body {
+    text-align: center;
+    font-family: Arial, sans-serif;
+    background-color: #ffe6e6;
+}
+
+.container {
+    padding: 20px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    margin: 10px;
+    border: none;
+    cursor: pointer;
+    background-color: #ff4d4d;
+    color: white;
+    border-radius: 5px;
+}
+.button-container {
+    text-align: center;
+}
+
+.dialog-box {
+    display: none;
+    width: 80%;
+    max-width: 400px;
+    margin: auto;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0px 0px 10px gray;
+    position: relative;
+    text-align: center;
+    overflow-y: auto;
+    max-height: 200px;
+}
+
+button:disabled {
+    background-color: gray;
+    cursor: not-allowed;
+}
+
+.fingerprint-box {
+    display: none;
+    text-align: center;
+    margin-top: 20px;
+    padding: 20px;
+    border: 2px solid gray;
+    border-radius: 10px;
+    background-color: white;
+    width: 200px;
+    margin: auto;
+    cursor: pointer;
+}
+
+.fingerprint-box img {
+    width: 100px;
+    height: 100px;
+}

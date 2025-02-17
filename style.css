@@ -1,0 +1,35 @@
+body {
+    background: linear-gradient(to right, #ff758c, #ff7eb3);
+    font-family: Arial, sans-serif;
+    text-align: center;
+    color: white;
+    margin: 0;
+    padding: 20px;
+}
+
+h1 {
+    font-size: 2rem;
+}
+
+.days-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.day-btn {
+    padding: 10px 15px;
+    font-size: 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    background: white;
+    color: #ff4081;
+    transition: 0.3s;
+}
+
+.day-btn:hover {
+    background: #ff4081;
+    color: white;
+}

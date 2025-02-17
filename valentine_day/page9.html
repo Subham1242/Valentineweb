@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine's Day - Page 9</title>
+    <style>
+        /* Page Styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            background-color: #fff0f5;
+            color: #d63384;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            transition: opacity 1s ease-in-out;
+        }
+        .fade-in { opacity: 1; }
+        .container {
+            width: 90%;
+            max-width: 500px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        h1 { font-size: 24px; }
+        p { font-size: 18px; }
+        button {
+            padding: 10px 15px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 5px;
+            background: #ff4d6d;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        .hidden { display: none; }
+        .response-box {
+            font-size: 18px;
+            font-style: italic;
+            color: #d63384;
+            margin-top: 15px;
+        }
+        .next-button {
+            padding: 10px 15px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 5px;
+            background: #ff4d6d;
+            color: white;
+            font-size: 16px;
+            text-decoration: none;
+            display: inline-block;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+        .next-button.visible { opacity: 1; }
+        .next-button:hover { background: #d63384; }
+    </style>
+</head>
+<body class="fade-in">
+    <div class="container">
+        <h1>💖 A Heartfelt Confession 💖</h1>
+        <p class="romantic-text">  
+            "Ek aakhri sawal"  
+        </p>
+
+        <div class="question-box">
+            <p class="question"><b>"Will You Be My Valentine?"</b></p>
+            <button onclick="showFinalAnswer(true)">Hamesha ❤️</button>
+            <button onclick="showFinalAnswer(false)">Sochna padega 😜</button>
+        </div>
+
+        <p id="final-response" class="response-box hidden"></p>
+
+        <a href="page10.html"><button id="nextFinal" class="next-button hidden">Next ➝</button></a>
+    </div>
+
+    <!-- Background Music -->
+    <audio id="backgroundMusic" autoplay loop>
+        <source src="media/song9.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            document.body.classList.add("fade-in");
+
+            // Background Music Autoplay
+            let music = document.getElementById("backgroundMusic");
+            music.volume = 0.5;
+            music.play().catch(error => console.log("Autoplay blocked, user interaction needed."));
+
+            let responseText = document.getElementById("final-response");
+            let nextButton = document.getElementById("nextFinal");
+
+            window.showFinalAnswer = function(isYes) {
+                if (isYes) {
+                    responseText.innerHTML = "Tumhari mohabbat meri zindagi ki sabse khoobsurat daulat hai. ❤️ Main hamesha sirf tumhara rahunga!";
+                } else {
+                    responseText.innerHTML = "Haww! 😜 Pyaar ka mazak nahi, lekin tumhara ye nakhra bhi mujhe pyaara lagta hai! 💕";
+                }
+                responseText.classList.remove("hidden");
+                nextButton.classList.remove("hidden");
+                setTimeout(() => nextButton.classList.add("visible"), 300); // Smooth fade-in
+            };
+        });
+    </script>
+</body>
+</html>

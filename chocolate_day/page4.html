@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chocolate Surprise</title>
+    <link rel="stylesheet" href="chocolate.css">
+</head>
+<body>
+    <audio id="bg-music" autoplay loop>
+        <source src="songs/song4.mp3" type="audio/mp3">
+    </audio>
+
+    <div class="container">
+        <h1>Ek Surprise Chocolate Sirf Tumhare Liye! 🍫🎁</h1>
+        
+        <!-- Gift Wrap Image (Initially Visible) -->
+        <div class="choco-container">
+            <img id="giftWrap" src="images/gift-wrap.png" alt="Gift Wrapped Chocolate" class="choco-img" onclick="unwrapChocolate()">
+
+            <!-- Chocolate Image (Initially Hidden) -->
+            <img id="chocolate" src="images/chocolate.png" alt="Chocolate Inside" class="choco-img hidden">
+        </div>
+
+        <!-- Message (Initially Hidden) -->
+        <p id="message" class="hidden">"Just like this chocolate, my love for you is sweet, pure, and forever! 💖"</p>
+        <br>
+        <br>
+
+        <a href="page5.html" class="btn">Next 🍫</a>
+    </div>
+
+    <script>
+        function unwrapChocolate() {
+            let wrap = document.getElementById("giftWrap");
+            let chocolate = document.getElementById("chocolate");
+            let message = document.getElementById("message");
+
+            if (wrap && chocolate && message) {
+                wrap.style.opacity = "0"; // Fade out gift wrap
+                setTimeout(() => {
+                    wrap.style.display = "none"; // Hide wrap completely
+                    chocolate.style.display = "block"; // Show chocolate
+                    chocolate.style.opacity = "1"; // Fade in chocolate
+                    message.classList.remove("hidden"); // Show message
+                }, 500);
+            } else {
+                console.log("Error: Element not found! Check IDs.");
+            }
+        }
+    </script>
+</body>
+</html>

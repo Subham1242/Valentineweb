@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seal Our Love Forever</title>
+    <link rel="stylesheet" href="promise.css">
+</head>
+<body>
+  <audio id="bg-music" autoplay loop>
+        <source src="songs/song4.mp3" type="audio/mp3">
+    </audio>
+    <div class="container">
+        <h1>Seal Our Love Forever</h1>
+
+        <!-- View Promise Button -->
+        <button id="viewPromiseBtn" class="promise-btn" onclick="openPromiseBox()">View Promise</button>
+
+        <!-- Promise Dialog Box -->
+        <div id="promiseBox" class="dialog-box">
+            <p id="promiseText">
+                1. "We promise to always trust each other and be honest, no matter what."<br><br>
+                2. "We promise to respect each other's individuality, opinions, and dreams, treating each other as equals."<br><br>
+                3. "We promise to love each other unconditionally and stay loyal through every phase of life."<br><br>
+                4. "We promise to stand by each other in happiness and hardships, never letting the other feel alone."<br><br>
+                5. "We promise to communicate openly, listen with patience, and resolve misunderstandings with love."<br><br>
+                6."We promise to grow together, learn from each other, and create a life full of love, laughter, and new experiences." <br><br>
+                7. "We promise to cherish every moment together and hold hands till the very end."<br><br>
+            </p>
+            <button onclick="closePromiseBox()">Close</button>
+        </div>
+
+        <!-- Instruction -->
+        <p>If you accept my promise, place your thumb impression</p>
+
+        <!-- Thumb Impression Button -->
+        <button id="thumbBtn" class="thumb-btn" onclick="showFingerprint()">Thumb Impression</button>
+
+        <!-- Fingerprint Image (Click to Accept) -->
+        <div id="fingerprintContainer" class="fingerprint-box" onclick="openSuccessBox()">
+            <img src="images/fingerprint.png" alt="Fingerprint" id="fingerprintImg">
+        </div>
+
+        <!-- Success Dialog Box -->
+        <div id="successBox" class="dialog-box">
+            <h2>Congratulations!</h2>
+            <p>Your promises have been accepted.</p>
+            <button onclick="closeSuccessBox()">Close</button>
+        </div>
+
+        <!-- Next Button (Initially Hidden) -->
+        <button id="nextBtn" class="next-btn" style="display: none;" onclick="goToNextPage()">Next</button>
+    </div>
+
+    <script src="promise.js"></script>
+</body>
+</html>

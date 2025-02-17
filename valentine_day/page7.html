@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page 7 - Ek Surprise Tumhare Liye ❤️</title>
+    <style>
+        /* Page Styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            background-color: #fff0f5;
+            color: #d63384;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            transition: opacity 1s ease-in-out;
+        }
+        .fade-in { opacity: 1; }
+        .container {
+            width: 90%;
+            max-width: 500px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        h2 { font-size: 22px; }
+        p { font-size: 18px; }
+        .clickable-heart {
+            font-size: 40px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        .clickable-heart:hover { transform: scale(1.2); }
+        .hidden { display: none; }
+        .next-button {
+            padding: 10px 15px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 5px;
+            background: #ff4d6d;
+            color: white;
+            font-size: 16px;
+            text-decoration: none;
+            display: inline-block;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+        .next-button.visible { opacity: 1; }
+        .next-button:hover { background: #d63384; }
+    </style>
+</head>
+<body class="fade-in">
+    <div class="container">
+        <h2> Ek chhoti si kosis tumhare liye hai, bas is ❤️ ko click karo!</h2>
+        
+        <div id="specialHeart" class="clickable-heart">❤️</div>
+        
+        <p id="surpriseMessage" class="hidden"><b>Wase pyaar ka koi din nahi hota per fir bhi suno!!!</b><br><br>
+         Tum ho sath tho<br>
+         Har din aacha ha<br>
+         Bharosa karo ye pyaar mera saacha ha<br>
+         Jise mangu khuda se wo khwaish ho tum<br>
+         Mere liye sabse mushkil ajmaish ho tum<br>
+         Kaise batau kya ho tum<br>
+         Me sochu jise din raat wo khayal ho tum<br>
+         Mere sawal ka jawaab ho tum<br>
+         Me likhu jise un sabdo ka alfaaz ho tum<br>
+         Ya yu kahu sach me bhaut khas ho tum <br>
+         Mere dil ke sabse pass ho tum<br><br>
+         <b>Meri Jaan ho tum </b>
+        </p>
+        
+        <a href="page8.html"><button id="nextButton7" class="next-button hidden">Next ➝</button></a>
+    </div>
+
+    <!-- Background Music -->
+    <audio id="backgroundMusic" autoplay loop>
+        <source src="media/song7.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            document.body.classList.add("fade-in");
+
+            // Background Music Autoplay
+            let music = document.getElementById("backgroundMusic");
+            music.volume = 0.5;
+            music.play().catch(error => console.log("Autoplay blocked, user interaction needed."));
+
+            // Surprise Click Event
+            let heart = document.getElementById("specialHeart");
+            let message = document.getElementById("surpriseMessage");
+            let nextBtn = document.getElementById("nextButton7");
+
+            heart.addEventListener("click", function() {
+                message.classList.remove("hidden");  // Show message
+                nextBtn.classList.remove("hidden");  // Show Next button
+                setTimeout(() => nextBtn.classList.add("visible"), 300); // Smooth fade-in
+            });
+        });
+    </script>
+</body>
+</html>

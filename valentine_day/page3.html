@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine's Day - Page 3</title>
+    <style>
+        /* Page Styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            background-color: #ffebef;
+            color: #d63384;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            transition: opacity 1s ease-in-out;
+        }
+        .fade-in { opacity: 1; }
+        .container {
+            width: 90%;
+            max-width: 500px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        h1 { font-size: 24px; }
+        .romantic-text { font-size: 18px; line-height: 1.5; }
+        .question-box { margin-top: 20px; }
+        .question { font-size: 20px; font-weight: bold; }
+        button {
+            padding: 10px 15px;
+            margin: 10px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+        #yesBtn { background: #ff4d6d; color: white; }
+        #noBtn { background: #ffd166; color: black; }
+        button:hover { opacity: 0.8; }
+        .hidden-response {
+            display: none;
+            font-size: 18px;
+            margin-top: 20px;
+            color: #d63384;
+        }
+        .next-button {
+            display: none;
+            padding: 10px 20px;
+            margin-top: 20px;
+            text-decoration: none;
+            color: white;
+            background: #ff4d6d;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+        .next-button:hover { background: #d63384; }
+    </style>
+</head>
+<body class="fade-in">
+    <div class="container">
+        <h1>💌 A Special Question 💌</h1>
+        <p class="romantic-text">"Dil ka ek sawaal hai jo sirf tumhari muskurahat hi pura kar sakti hai..."</p>
+
+        <div class="question-box">
+            <p class="question">"Kya tum mujhe hamesha pyaar karogi?"</p>
+            <button onclick="selectAnswer('Yes')" id="yesBtn">Haan ❤️</button>
+            <button onclick="selectAnswer('No')" id="noBtn">Sochna padega 😜</button>
+        </div>
+
+        <p id="responseText" class="hidden-response"></p>
+
+        <a href="page4.html" class="next-button" id="nextBtn">Next ➝</a>
+    </div>
+
+    <!-- Background Music -->
+    <audio id="backgroundMusic" autoplay loop>
+        <source src="media/song3.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            document.body.classList.add("fade-in");
+
+            // Background music autoplay
+            let music = document.getElementById("backgroundMusic");
+            music.volume = 0.5; // Set volume to 50%
+            music.play().catch(error => {
+                console.log("Autoplay blocked, user interaction needed.");
+            });
+        });
+
+        function selectAnswer(choice) {
+            let responseText = document.getElementById("responseText");
+            let nextBtn = document.getElementById("nextBtn");
+
+            if (choice === 'Yes') {
+                responseText.innerText = "Mujhe pata tha! Tum meri ho aur hamesha meri rahogi! ❤️";
+                responseText.style.display = "block";
+                nextBtn.style.display = "inline-block"; // Show next button
+            } else {
+                responseText.innerText = "Aww! Phir se socho... Main intezaar kar raha hoon! 😜";
+                responseText.style.display = "block";
+                nextBtn.style.display = "none"; // Hide next button if 'No' is clicked
+            }
+        }
+    </script>
+</body>
+</html>

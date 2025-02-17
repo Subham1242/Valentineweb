@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proposal</title>
+    <link rel="stylesheet" href="propose.css">
+</head>
+<body>
+    <audio id="bg-music" autoplay loop>
+    <source src="songs/song5.mp3" type="audio/mp3">
+  </audio>
+    <div class="container">
+        <p> Kuch khena tha tumse,<br>Tum sunna chaogi kya.<br>Zindagi ek chota sa safar ha,<br>Tum mere sath chalna chahogi kya.<br>Aur jab kabhi mujhe nind na aaye,<br>Tum mujhe apne goad me sulaogi kya.<br>Wase tho mene gawaye ha har apni pyari chiz ko,<br>Tum fir bhi wo pyaari chiz banna chahogi kya.</p>
+        <h1>Will you be my life partner, Sweetheart? ❤️</h1>
+        <button class="btn yes" onclick="saveChoice('Yes')">Yes ❤️</button>
+        <button class="btn no" onclick="saveChoice('No')">No 💔</button>
+    </div>
+
+    <script>
+        function saveChoice(choice) {
+            let history = JSON.parse(localStorage.getItem("proposalHistory")) || []; // Get existing history
+
+            let now = new Date(); // Get current time
+            let timestamp = now.toLocaleString(); // Format time (e.g., 09-Feb-2025, 10:45 PM)
+
+            history.push({ choice: choice, time: timestamp }); // Add new answer with timestamp
+
+            localStorage.setItem("proposalHistory", JSON.stringify(history)); // Save back to storage
+
+            // Redirect based on choice
+            setTimeout(() => {
+                window.location.href = choice === "Yes" ? "page5_yes.html" : "page5_no.html";
+            }, 300);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Answers Page</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            background-color: #fff0f5;
+            color: #d63384;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            margin: auto;
+        }
+        .answer-section {
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 8px;
+            background: #ffedf4;
+            overflow-y: auto;
+            max-height: 300px;
+        }
+        .clear-button {
+            background: #ff4d6d;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            cursor: pointer;
+            margin-top: 10px;
+            border-radius: 5px;
+        }
+        .clear-button:hover { background: #d63384; }
+        .answer-list { text-align: left; padding: 0 10px; }
+        .timestamp { font-size: 12px; color: gray; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📜 Her Answers 📜</h1>
+        <p>Yahan tumhari jaan ke diye gaye saare jawab safe hain ❤️</p>
+
+        <div id="page5Answers" class="answer-section">
+            <h3>Page 5 Answers</h3>
+            <div class="answer-list" id="page5List"></div>
+            <button class="clear-button" onclick="clearAnswers('Page 5')">🗑 Clear Page 5 Answers</button>
+        </div>
+
+        <div id="page8Answers" class="answer-section">
+            <h3>Page 8 Answers</h3>
+            <div class="answer-list" id="page8List"></div>
+            <button class="clear-button" onclick="clearAnswers('Page 8')">🗑 Clear Page 8 Answers</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let storedAnswers = JSON.parse(localStorage.getItem("valentine_answers")) || [];
+
+            let page5List = document.getElementById("page5List");
+            let page8List = document.getElementById("page8List");
+
+            function displayAnswers(page, container) {
+                let answers = storedAnswers.filter(entry => entry.page === page);
+                if (answers.length === 0) {
+                    container.innerHTML = "<p>Koi jawab nahi mila! 😜</p>";
+                    return;
+                }
+                container.innerHTML = answers.map(entry => `
+                    <p><strong>${entry.question}</strong><br>
+                    ${entry.answer} <br>
+                    <span class="timestamp">🕒 ${entry.timestamp}</span></p>
+                `).join("");
+            }
+
+            displayAnswers("Page 5", page5List);
+            displayAnswers("Page 8", page8List);
+        });
+
+        function clearAnswers(page) {
+            let storedAnswers = JSON.parse(localStorage.getItem("valentine_answers")) || [];
+            let filteredAnswers = storedAnswers.filter(entry => entry.page !== page);
+            localStorage.setItem("valentine_answers", JSON.stringify(filteredAnswers));
+            location.reload();
+        }
+    </script>
+</body>
+</html>

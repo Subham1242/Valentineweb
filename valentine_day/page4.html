@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine's Day - Page 4</title>
+    <style>
+        /* Page Styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            background-color: #ffe6f2;
+            color: #d63384;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            transition: opacity 1s ease-in-out;
+        }
+        .fade-in { opacity: 1; }
+        .container {
+            width: 90%;
+            max-width: 500px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        h1 { font-size: 24px; }
+        .romantic-text {
+            font-size: 18px;
+            line-height: 1.5;
+            font-style: italic;
+        }
+        .photo-frame {
+            margin-top: 20px;
+        }
+        .photo-frame img {
+            width: 100%;
+            max-width: 300px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .next-button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 20px;
+            text-decoration: none;
+            color: white;
+            background: #ff4d6d;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+        .next-button:hover { background: #d63384; }
+    </style>
+</head>
+<body class="fade-in">
+    <div class="container">
+        <h1>🌹 Mohabbat Ki Ek Duniya 🌹</h1>
+        <p class="romantic-text">
+            "Tere bina adhura sa lagta hai yeh jeevan,<br>
+            Jaise chaand ke bina raat, jaise saavan ke bina barsaat...<br>
+            Har dhadkan sirf tera naam le, har saans sirf tere pyaar ka ehsaas de..."  
+        </p>
+
+        <div class="photo-frame">
+            <img src="media/komal2.jpg" alt="Komal">
+        </div>
+
+        <a href="page5.html" class="next-button">Next ➝</a>
+    </div>
+
+    <!-- Background Music -->
+    <audio id="backgroundMusic" autoplay loop>
+        <source src="media/song4.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            document.body.classList.add("fade-in");
+
+            // Background music autoplay
+            let music = document.getElementById("backgroundMusic");
+            music.volume = 0.5; // Set volume to 50%
+            music.play().catch(error => {
+                console.log("Autoplay blocked, user interaction needed.");
+            });
+        });
+    </script>
+</body>
+</html>

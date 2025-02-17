@@ -1,0 +1,88 @@
+body {
+    background-color: #402218;
+    color: white;
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    margin-top: 50px;
+}
+
+/* Button Styling */
+.btn {
+    padding: 10px 20px;
+    background-color: #ff9f43;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 20px;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.btn:hover {
+    background-color: #ff6f00;
+    transform: scale(1.05);
+}
+
+/* Image Effects */
+.image-effect, .heart-glow, .love-effect {
+    width: 200px;
+    height: auto;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+
+.image-effect:hover, .heart-glow:hover, .love-effect:hover {
+    transform: scale(1.1);
+}
+
+/* Styles for Chocolate Unwrapping on Page 4 */
+.choco-container {
+    position: relative;
+    display: inline-block;
+}
+
+.choco-img {
+    width: 250px;
+    cursor: pointer;
+    transition: transform 0.5s, opacity 0.5s;
+}
+
+/* Gift wrap image */
+#giftWrap {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+}
+
+/* Chocolate image (Initially Hidden) */
+#chocolate {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+/* Smoothly fade in the chocolate after unwrapping */
+.reveal {
+    display: block !important;
+    opacity: 1 !important;
+}
+
+/* Hide Elements Initially */
+.hidden {
+    display: none;
+}
+
+/* Smooth Page Fade Out Effect */
+.fade-out {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}

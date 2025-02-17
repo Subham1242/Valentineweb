@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page 8 - Kya Tum Tayyar Ho?</title>
+    <style>
+        /* Page Styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            background-color: #fff0f5;
+            color: #d63384;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            transition: opacity 1s ease-in-out;
+        }
+        .fade-in { opacity: 1; }
+        .container {
+            width: 90%;
+            max-width: 500px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        h2 { font-size: 22px; }
+        p { font-size: 18px; }
+        button {
+            padding: 10px 15px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 5px;
+            background: #ff4d6d;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:disabled {
+            background: #aaa;
+            cursor: not-allowed;
+        }
+        .hidden { display: none; }
+        textarea {
+            width: 90%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #d63384;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        .next-button {
+            padding: 10px 15px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 5px;
+            background: #ff4d6d;
+            color: white;
+            font-size: 16px;
+            text-decoration: none;
+            display: inline-block;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 1s ease-in-out, visibility 1s ease-in-out;
+        }
+        .next-button.visible { 
+            opacity: 1; 
+            visibility: visible;
+        }
+        .next-button:hover { background: #d63384; }
+    </style>
+</head>
+<body class="fade-in">
+    <div class="container">
+        <h2>Page 8: Kya Tum Tayyar Ho?</h2>
+        <p>Mujhse ek sawaal ka jawab do! 💖</p>
+        
+        <button id="specialAction">Haan, Chalo!</button>
+
+        <!-- Hidden question section -->
+        <div id="questionSection" class="hidden">
+            <p>Me tumhari khushi ke liye kya kya kar sakta hu, meri jaan??✨</p>
+            <textarea id="messageInput" rows="4" placeholder="Yahan likho..."></textarea>
+            <button id="sendButton" disabled>Send</button>
+        </div>
+
+        <!-- Hidden Next button -->
+        <a href="page9.html"><button id="nextButton8" class="next-button hidden">Next ➝</button></a>
+    </div>
+    <!-- Background Music -->
+    <audio id="backgroundMusic" autoplay loop>
+        <source src="media/song8.mp3" type="audio/mpeg">
+    </audio>
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        let specialAction = document.getElementById("specialAction");
+        let questionSection = document.getElementById("questionSection");
+        let messageInput = document.getElementById("messageInput");
+        let sendButton = document.getElementById("sendButton");
+        let nextButton = document.getElementById("nextButton8");
+
+        specialAction.addEventListener("click", function () {
+            questionSection.classList.remove("hidden");
+        });
+
+        messageInput.addEventListener("input", function () {
+            sendButton.disabled = messageInput.value.trim() === "";
+        });
+
+        sendButton.addEventListener("click", function () {
+            let answer = messageInput.value.trim();
+            if (answer) {
+                let storedAnswers = JSON.parse(localStorage.getItem("valentine_answers")) || [];
+                let timestamp = new Date().toLocaleString(); 
+
+                storedAnswers.push({ 
+                    page: "Page 8", 
+                    question: "Tum mujhe sabse pehle kya kehna chahogi?", 
+                    answer: answer, 
+                    timestamp: timestamp 
+                });
+
+                localStorage.setItem("valentine_answers", JSON.stringify(storedAnswers));
+
+                nextButton.classList.add("visible");
+                sendButton.disabled = true;
+            }
+        });
+    });
+                // Background Music Autoplay
+            let music = document.getElementById("backgroundMusic");
+            music.volume = 0.5;
+            music.play().catch(error => console.log("Autoplay blocked, user interaction needed."));
+    </script>
+
+</body>
+</html>
