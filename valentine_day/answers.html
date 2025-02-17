@@ -2,21 +2,22 @@
 <html lang="en">
 <head>
   <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js"></script>
   <script>
     const firebaseConfig = {
-  apiKey: "AIzaSyBww7Nk8UiIYxi8l9qEchmo8I8IOIFUyJc",
-  authDomain: "valentine-answer.firebaseapp.com",
-  databaseURL: "https://valentine-answer-default-rtdb.asia-southeast1.firebasedatabase.app",
-  projectId: "valentine-answer",
-  storageBucket: "valentine-answer.firebasestorage.app",
-  messagingSenderId: "38780462532",
-  appId: "1:38780462532:web:eb94337da664a602587091",
-  measurementId: "G-GLZQPQ9KS0"
-};
+      apiKey: "AIzaSyBww7Nk8UiIYxi8l9qEchmo8I8IOIFUyJc",
+      authDomain: "valentine-answer.firebaseapp.com",
+      databaseURL: "https://valentine-answer-default-rtdb.asia-southeast1.firebasedatabase.app",
+      projectId: "valentine-answer",
+      storageBucket: "valentine-answer.firebasestorage.app",
+      messagingSenderId: "38780462532",
+      appId: "1:38780462532:web:eb94337da664a602587091",
+      measurementId: "G-GLZQPQ9KS0"
+    };
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
+    // Initialize Firebase
+    const app = firebase.initializeApp(firebaseConfig);
+    const database = firebase.database(app);
   </script>
   
     <meta charset="UTF-8">
@@ -77,92 +78,74 @@ const app = initializeApp(firebaseConfig);
             <div class="answer-list" id="page8List"></div>
             <button class="clear-button" onclick="clearAnswers('Page 8')">🗑 Clear Page 8 Answers</button>
         </div>
+        
+        <form id="answerForm">
+            <input type="text" id="answerInput" placeholder="Type your answer">
+            <button type="submit">Submit Answer</button>
+        </form>
+        
+        <h3>All Answers:</h3>
+        <ul id="answersList"></ul>
     </div>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            let storedAnswers = JSON.parse(localStorage.getItem("valentine_answers")) || [];
-
-            let page5List = document.getElementById("page5List");
-            let page8List = document.getElementById("page8List");
-
-            function displayAnswers(page, container) {
-                let answers = storedAnswers.filter(entry => entry.page === page);
-                if (answers.length === 0) {
+        // Display answers from Firebase
+        function displayAnswers(page, container) {
+            const answersRef = database.ref('answers');
+            answersRef.orderByChild('page').equalTo(page).on('value', snapshot => {
+                const data = snapshot.val();
+                if (!data) {
                     container.innerHTML = "<p>Koi jawab nahi mila! 😜</p>";
                     return;
                 }
-                container.innerHTML = answers.map(entry => `
+                container.innerHTML = Object.values(data).map(entry => `
                     <p><strong>${entry.question}</strong><br>
                     ${entry.answer} <br>
                     <span class="timestamp">🕒 ${entry.timestamp}</span></p>
                 `).join("");
-            }
+            });
+        }
 
-            displayAnswers("Page 5", page5List);
-            displayAnswers("Page 8", page8List);
-        });
-
+        // Clear answers for a specific page
         function clearAnswers(page) {
-            let storedAnswers = JSON.parse(localStorage.getItem("valentine_answers")) || [];
-            let filteredAnswers = storedAnswers.filter(entry => entry.page !== page);
-            localStorage.setItem("valentine_answers", JSON.stringify(filteredAnswers));
-            location.reload();
+            const answersRef = database.ref('answers');
+            answersRef.orderByChild('page').equalTo(page).once('value', snapshot => {
+                snapshot.forEach(childSnapshot => {
+                    childSnapshot.ref.remove();
+                });
+            });
         }
-        <form id="answerForm">
-    <input type="text" id="answerInput" placeholder="Type your answer">
-    <button type="submit">Submit Answer</button>
-</form>
 
-<script>
-    function saveAnswer(answer) {
-        const answersRef = database.ref('answers');
-        answersRef.push({
-            answer: answer,
-            timestamp: new Date().toISOString()
-        });
-    }
-
-    // Capture form submission
-    document.getElementById('answerForm').addEventListener('submit', function(event) {
-        event.preventDefault();
-        const answer = document.getElementById('answerInput').value;
-        if (answer) {
-            saveAnswer(answer); // Save answer to Firebase
-            alert("Answer saved!");
-            document.getElementById('answerInput').value = ''; // Clear input field
-        } else {
-            alert("Please enter an answer!");
+        // Save answer to Firebase
+        function saveAnswer(answer, page) {
+            const answersRef = database.ref('answers');
+            const newAnswer = answersRef.push();
+            newAnswer.set({
+                page: page,
+                answer: answer,
+                timestamp: new Date().toISOString()
+            });
         }
-    });
-</script>
-<h3>All Answers:</h3>
-<ul id="answersList"></ul>
-<script>
-    function getAnswers() {
-        const answersRef = database.ref('answers');
-        answersRef.on('value', (snapshot) => {
-            const data = snapshot.val();
-            const answersList = document.getElementById('answersList');
-            answersList.innerHTML = ''; // Clear previous answers
 
-            // Loop through all answers and display them
-            for (const key in data) {
-                if (data.hasOwnProperty(key)) {
-                    const answer = data[key];
-                    const listItem = document.createElement('li');
-                    listItem.textContent = `${answer.answer} - ${answer.timestamp}`;
-                    answersList.appendChild(listItem);
-                }
+        // Capture form submission
+        document.getElementById('answerForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const answer = document.getElementById('answerInput').value;
+            if (answer) {
+                // Save answer for Page 5 as an example
+                saveAnswer(answer, 'Page 5'); 
+                alert("Answer saved!");
+                document.getElementById('answerInput').value = ''; // Clear input field
+            } else {
+                alert("Please enter an answer!");
             }
         });
-    }
 
-    // Call getAnswers function to display answers
-    getAnswers();
-</script>
-
-        
+        // Display answers on page load
+        document.addEventListener('DOMContentLoaded', function () {
+            displayAnswers("Page 5", document.getElementById("page5List"));
+            displayAnswers("Page 8", document.getElementById("page8List"));
+        });
     </script>
 </body>
 </html>
